@@ -374,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //  CONFIGURATIONS & EMAIL TARGETS
   // ========================================================
   // All form submissions and file uploads are routed to this business email address:
-  const OFFICIAL_EMAIL_TARGET = "eagleeyesecurityindia.comdia@gmail.com";
+  const OFFICIAL_EMAIL_TARGET = "eagleeyesecurity.india@gmail.com";
 
   /** Simple validation patterns */
   const patterns = {
