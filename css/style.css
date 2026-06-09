@@ -2065,21 +2065,19 @@ p:last-child {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-full);
-  background: var(--gold);
-  color: var(--deep-black);
+  background: rgba(15, 29, 54, 0.85);
+  border: 1px solid rgba(200, 165, 78, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--gold);
   font-size: 20px;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 16px rgba(5, 10, 18, 0.4);
   z-index: var(--z-float);
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px);
-  transition:
-    opacity var(--duration-normal) var(--ease-smooth),
-    visibility var(--duration-normal) var(--ease-smooth),
-    transform var(--duration-normal) var(--ease-smooth),
-    background-color var(--duration-fast) var(--ease-smooth);
+  transition: all var(--duration-normal) var(--ease-smooth);
   cursor: pointer;
-  border: none;
 }
 
 .back-to-top.visible {
@@ -2089,8 +2087,11 @@ p:last-child {
 }
 
 .back-to-top:hover {
-  background: var(--gold-light);
+  background: var(--gold);
+  color: var(--deep-black);
+  border-color: var(--gold);
   transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(200, 165, 78, 0.3);
 }
 
 
