@@ -1091,6 +1091,65 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /* --------------------------------------------------------
+   *  20. INDUSTRIES SHOWCASE TAB INTERACTION
+   *  Toggles active navigation tab and details panels
+   * ------------------------------------------------------ */
+  (() => {
+    const navItems = $$('.ind-nav-item');
+    const panels = $$('.ind-detail-panel');
+    if (!navItems.length || !panels.length) return;
+
+    navItems.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.target;
+        if (!target) return;
+
+        // 1. Update navigation items active state
+        navItems.forEach((item) => item.classList.remove('active'));
+        btn.classList.add('active');
+
+        // 2. Update detail panels active state with smooth transition
+        panels.forEach((panel) => {
+          if (panel.id === `panel-${target}`) {
+            panel.style.display = 'grid';
+            // Reflow to trigger CSS transitions
+            void panel.offsetWidth;
+            panel.classList.add('active');
+          } else {
+            panel.classList.remove('active');
+            // Hide panel after fade animation finishes (400ms)
+            setTimeout(() => {
+              if (!panel.classList.contains('active')) {
+                panel.style.display = 'none';
+              }
+            }, 400);
+          }
+        });
+      });
+    });
+
+    // Handle "Request Custom Plan" buttons inside panels to pre-fill the form
+    $$('.ind-cta-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        const service = link.dataset.service;
+        const dropdown = $('[name="service"]', $('#quote-form'));
+        
+        if (dropdown && service) {
+          // Pre-fill option by matching name
+          const option = $$('option', dropdown).find(
+            (opt) => opt.value.toLowerCase().includes(service.toLowerCase()) || 
+                     service.toLowerCase().includes(opt.value.toLowerCase())
+          );
+          if (option) {
+            dropdown.value = option.value;
+            dropdown.dispatchEvent(new Event('change'));
+          }
+        }
+      });
+    });
+  })();
+
+  /* --------------------------------------------------------
    *  INIT COMPLETE — log for debugging
    * ------------------------------------------------------ */
   console.log('%c✦ Eagle Eye Security — JS Loaded', 'color:#c8a84e; font-weight:bold;');

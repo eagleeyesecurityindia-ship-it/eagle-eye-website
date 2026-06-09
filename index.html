@@ -613,66 +613,252 @@
                 <h2 class="section-title">Industries We Serve</h2>
                 <p class="section-subtitle">Delivering specialized security and manpower solutions across diverse industry verticals.</p>
             </div>
-            <div class="industries-grid">
-                <div class="industry-tile reveal">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14h-2V9h-2V7h4v10z"/></svg>
-                    <span>Manufacturing</span>
+            <div class="industries-showcase-container reveal">
+                <!-- Left Nav: Sector List -->
+                <div class="industries-nav">
+                    <button class="ind-nav-item active" data-target="corporate" aria-label="Show Corporate & Office Spaces security details">
+                        <span class="ind-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10z"/></svg>
+                        </span>
+                        <span class="ind-nav-text">Corporate & Offices</span>
+                        <span class="ind-nav-arrow">→</span>
+                    </button>
+                    <button class="ind-nav-item" data-target="industrial" aria-label="Show Industrial & Manufacturing security details">
+                        <span class="ind-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3h7z"/></svg>
+                        </span>
+                        <span class="ind-nav-text">Industrial & Manufacturing</span>
+                        <span class="ind-nav-arrow">→</span>
+                    </button>
+                    <button class="ind-nav-item" data-target="retail" aria-label="Show Retail & Shopping Malls security details">
+                        <span class="ind-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6-2c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm6 16H6V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h4v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z"/></svg>
+                        </span>
+                        <span class="ind-nav-text">Retail & Malls</span>
+                        <span class="ind-nav-arrow">→</span>
+                    </button>
+                    <button class="ind-nav-item" data-target="residential" aria-label="Show Residential Gated Communities security details">
+                        <span class="ind-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                        </span>
+                        <span class="ind-nav-text">Residential Societies</span>
+                        <span class="ind-nav-arrow">→</span>
+                    </button>
+                    <button class="ind-nav-item" data-target="hospitality" aria-label="Show Healthcare & Hospitality security details">
+                        <span class="ind-nav-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+                        </span>
+                        <span class="ind-nav-text">Healthcare & Hotels</span>
+                        <span class="ind-nav-arrow">→</span>
+                    </button>
                 </div>
-                <div class="industry-tile reveal">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1 0-2 .9-2 2v3.01c0 .72.43 1.34 1 1.69V20c0 1.1 1.1 2 2 2h14c.9 0 2-.9 2-2V8.7c.57-.35 1-.97 1-1.69V4c0-1.1-1-2-2-2zm-5 12H9v-2h6v2zm5-7H4V4h16v3z"/></svg>
-                    <span>Warehousing</span>
+
+                <!-- Right Showcase: Details Panel -->
+                <div class="industries-details-container">
+                    
+                    <!-- 1. Corporate Detail Card -->
+                    <div class="ind-detail-panel active" id="panel-corporate">
+                        <div class="ind-detail-content">
+                            <h3 class="ind-detail-title">Corporate & Office Space Security</h3>
+                            <p class="ind-detail-desc">We safeguard corporate headquarters, commercial complexes, and technology parks with a sophisticated balance of welcoming customer service and vigilant, high-profile defense protocols.</p>
+                            <ul class="ind-detail-features">
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Polished Concierge, Receptionist & Guard Services</span>
+                                </li>
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Access Control, Badging Systems & Visitor Verification</span>
+                                </li>
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>24/7 CCTV Operations & Integrated Command Centers</span>
+                                </li>
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Executive & VIP Protection and Secure Transport Escorts</span>
+                                </li>
+                            </ul>
+                            <div class="ind-detail-action">
+                                <a href="#contact" class="btn btn-primary btn-sm ind-cta-link" data-service="Corporate & Offices">Request Custom Plan</a>
+                            </div>
+                        </div>
+                        <div class="ind-detail-visual bg-gradient-corp">
+                            <div class="visual-glow"></div>
+                            <svg class="visual-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10z"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- 2. Industrial Detail Card -->
+                    <div class="ind-detail-panel" id="panel-industrial">
+                        <div class="ind-detail-content">
+                            <h3 class="ind-detail-title">Industrial & Manufacturing Security</h3>
+                            <p class="ind-detail-desc">We deliver robust physical security and loss prevention for manufacturing plants, manufacturing units, and heavy industrial facilities where strict regulatory compliance and perimeter safety are critical.</p>
+                            <ul class="ind-detail-features">
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Material Inward/Outward Logs & Strict Gate Pass Audits</span>
+                                </li>
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Perimeter Security Patrols & Intrusion Detection Alerts</span>
+                                </li>
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>24/7 Weighbridge Vigilance & Cargo Loading Oversight</span>
+                                </li>
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Labor Union Coordination & Crisis/Riot Prevention</span>
+                                </li>
+                            </ul>
+                            <div class="ind-detail-action">
+                                <a href="#contact" class="btn btn-primary btn-sm ind-cta-link" data-service="Industrial & Manufacturing">Request Custom Plan</a>
+                            </div>
+                        </div>
+                        <div class="ind-detail-visual bg-gradient-ind">
+                            <div class="visual-glow"></div>
+                            <svg class="visual-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3h7z"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- 3. Retail Detail Card -->
+                    <div class="ind-detail-panel" id="panel-retail">
+                        <div class="ind-detail-content">
+                            <h3 class="ind-detail-title">Retail Chains & Shopping Malls</h3>
+                            <p class="ind-detail-desc">We combine public safety enforcement with active theft deterrence in high-traffic retail complexes. Our security personnel are trained in crowd dynamics, public dispute resolution, and store loss prevention.</p>
+                            <ul class="ind-detail-features">
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Crowd Control, Entry Metal Scanning & Baggage Inspection</span>
+                                </li>
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Active Shoplifting Mitigation & Floor Walking Patrols</span>
+                                </li>
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Emergency Medical Response & Incident Management Logs</span>
+                                </li>
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Friendly Customer Interaction & Directions Support</span>
+                                </li>
+                            </ul>
+                            <div class="ind-detail-action">
+                                <a href="#contact" class="btn btn-primary btn-sm ind-cta-link" data-service="Retail & Malls">Request Custom Plan</a>
+                            </div>
+                        </div>
+                        <div class="ind-detail-visual bg-gradient-ret">
+                            <div class="visual-glow"></div>
+                            <svg class="visual-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6-2c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm6 16H6V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h4v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- 4. Residential Detail Card -->
+                    <div class="ind-detail-panel" id="panel-residential">
+                        <div class="ind-detail-content">
+                            <h3 class="ind-detail-title">Gated Residential Societies</h3>
+                            <p class="ind-detail-desc">We foster safe, quiet, and premium living spaces for residential societies. Our guards work closely with smart visitor management apps to monitor gates, common spaces, and enforce community guidelines.</p>
+                            <ul class="ind-detail-features">
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Digital App-Based Visitor Approval at Entry Gates</span>
+                                </li>
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>24/7 Security Patrols on Foot and Segway/Bikes</span>
+                                </li>
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Smart Parking Enforcement & Vehicle Verification</span>
+                                </li>
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Rapid First Responder Unit for Medical & Fire Emergencies</span>
+                                </li>
+                            </ul>
+                            <div class="ind-detail-action">
+                                <a href="#contact" class="btn btn-primary btn-sm ind-cta-link" data-service="Residential Societies">Request Custom Plan</a>
+                            </div>
+                        </div>
+                        <div class="ind-detail-visual bg-gradient-res">
+                            <div class="visual-glow"></div>
+                            <svg class="visual-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- 5. Hospitality & Healthcare Detail Card -->
+                    <div class="ind-detail-panel" id="panel-hospitality">
+                        <div class="ind-detail-content">
+                            <h3 class="ind-detail-title">Healthcare & Hotels</h3>
+                            <p class="ind-detail-desc">We deliver specialized security operations for luxury hotels, hospitals, and medical centers, maintaining absolute security protocols while maintaining high standards of customer hospitality.</p>
+                            <ul class="ind-detail-features">
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Sensitive Emergency Ward & Intensive Unit Security</span>
+                                </li>
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Hotel Baggage Scans, Valet Verification & Door Control</span>
+                                </li>
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Hospitality-Trained Security Guard Officers</span>
+                                </li>
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    <span>Restricted Area Access Logs & Expensive Asset Protection</span>
+                                </li>
+                            </ul>
+                            <div class="ind-detail-action">
+                                <a href="#contact" class="btn btn-primary btn-sm ind-cta-link" data-service="Healthcare & Hotels">Request Custom Plan</a>
+                            </div>
+                        </div>
+                        <div class="ind-detail-visual bg-gradient-hos">
+                            <div class="visual-glow"></div>
+                            <svg class="visual-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+                        </div>
+                    </div>
                 </div>
-                <div class="industry-tile reveal">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-                    <span>Logistics</span>
-                </div>
-                <div class="industry-tile reveal">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 4.42-3.58 8-8 8s-8-3.58-8-8c0-4.08 3.05-7.44 7-7.93V2.05C6.17 2.55 2 7.12 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10c0-4.88-4.17-9.45-9-9.95z"/></svg>
-                    <span>Construction</span>
-                </div>
-                <div class="industry-tile reveal">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-                    <span>Residential Societies</span>
-                </div>
-                <div class="industry-tile reveal">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10z"/></svg>
-                    <span>Corporate Offices</span>
-                </div>
-                <div class="industry-tile reveal">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>
-                    <span>Hospitals</span>
-                </div>
-                <div class="industry-tile reveal">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
-                    <span>Educational Institutions</span>
-                </div>
-                <div class="industry-tile reveal">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6-2c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm6 16H6V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h4v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z"/></svg>
-                    <span>Retail Chains</span>
-                </div>
-                <div class="industry-tile reveal">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4v2h16V4zm1 10v-2l-1-5H4l-1 5v2h1v6h10v-6h4v6h2v-6h1zm-9 4H6v-4h6v4z"/></svg>
-                    <span>Shopping Malls</span>
-                </div>
-                <div class="industry-tile reveal">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
-                    <span>Hotels</span>
-                </div>
-                <div class="industry-tile reveal">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
-                    <span>Events &amp; Exhibitions</span>
-                </div>
-                <div class="industry-tile reveal">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6 4.83 4.5 4 4.5zm0 12c-.83 0-1.5.68-1.5 1.5s.68 1.5 1.5 1.5 1.5-.68 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z"/></svg>
-                    <span>Government Projects</span>
-                </div>
-                <div class="industry-tile reveal">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3h7z"/></svg>
-                    <span>Industrial Plants</span>
-                </div>
-                <div class="industry-tile reveal">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h20v-2H2v2zm14-12v7h3v-7h-3zm-4-7L2 9v1h20V9L12 3z"/></svg>
-                    <span>Financial &amp; Banking</span>
+            </div>
+
+            <!-- Other Sectors Section -->
+            <div class="other-sectors-section reveal">
+                <h3 class="other-sectors-title">Comprehensive Sector Coverage</h3>
+                <div class="other-sectors-grid">
+                    <div class="other-sector-badge">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M20 2H4c-1 0-2 .9-2 2v3.01c0 .72.43 1.34 1 1.69V20c0 1.1 1.1 2 2 2h14c.9 0 2-.9 2-2V8.7c.57-.35 1-.97 1-1.69V4c0-1.1-1-2-2-2zm-5 12H9v-2h6v2zm5-7H4V4h16v3z"/></svg>
+                        <span>Warehousing & Storage</span>
+                    </div>
+                    <div class="other-sector-badge">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                        <span>Logistics & Transit</span>
+                    </div>
+                    <div class="other-sector-badge">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 4.42-3.58 8-8 8s-8-3.58-8-8c0-4.08 3.05-7.44 7-7.93V2.05C6.17 2.55 2 7.12 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10c0-4.88-4.17-9.45-9-9.95z"/></svg>
+                        <span>Construction Sites</span>
+                    </div>
+                    <div class="other-sector-badge">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14h-2V9h-2V7h4v10z"/></svg>
+                        <span>Hospitals & Clinics</span>
+                    </div>
+                    <div class="other-sector-badge">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+                        <span>Educational Campuses</span>
+                    </div>
+                    <div class="other-sector-badge">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                        <span>Events &amp; Exhibitions</span>
+                    </div>
+                    <div class="other-sector-badge">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6 4.83 4.5 4 4.5zm0 12c-.83 0-1.5.68-1.5 1.5s.68 1.5 1.5 1.5 1.5-.68 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z"/></svg>
+                        <span>Government Projects</span>
+                    </div>
+                    <div class="other-sector-badge">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h20v-2H2v2zm14-12v7h3v-7h-3zm-4-7L2 9v1h20V9L12 3z"/></svg>
+                        <span>Financial &amp; Banking</span>
+                    </div>
                 </div>
             </div>
         </div>
