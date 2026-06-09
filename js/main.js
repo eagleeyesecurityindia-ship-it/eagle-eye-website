@@ -785,7 +785,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* --------------------------------------------------------
    *  18. INTERACTIVE SECURITY GRID (PARTICLE CANVAS + RADAR SCANNER)
-   *  A premium, conic-sweeping radar scanner & high-tech surveillance HUD
+   *  Optimized high-performance canvas: uses squared distance comparisons,
+   *  pre-calculated dimensions, and avoids costly shadowBlur calculations.
    * ------------------------------------------------------ */
   (() => {
     const canvas = $('#hero-grid-canvas');
@@ -796,6 +797,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let animationId;
     let width = 0;
     let height = 0;
+    let r = 0; // Pre-calculated diagonal screen radius
     let mouse = { x: null, y: null, active: false };
     let isVisible = true;
     let radarAngle = 0;
@@ -823,6 +825,12 @@ document.addEventListener('DOMContentLoaded', () => {
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.scale(dpr, dpr);
+
+      // Pre-calculate diagonal radius
+      const cx = width / 2;
+      const cy = height / 2;
+      r = Math.sqrt(cx * cx + cy * cy);
+
       initParticles();
     };
 
@@ -832,7 +840,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.y = Math.random() * height;
         this.vx = (Math.random() - 0.5) * 0.35; // slow drift
         this.vy = (Math.random() - 0.5) * 0.35;
-        this.radius = Math.random() * 1.5 + 1.5; // clean compact size
+        this.radius = Math.random() * 1.5 + 1.5;
         this.ping = 0; // radar hit intensity [0, 1]
       }
 
@@ -846,10 +854,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (mouse.active && mouse.x !== null) {
           const dx = mouse.x - this.x;
           const dy = mouse.y - this.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 180) {
-            this.x += dx * 0.005;
-            this.y += dy * 0.005;
+          const distSq = dx * dx + dy * dy;
+          if (distSq < 32400) { // 180 * 180 = 32400
+            const dist = Math.sqrt(distSq);
+            this.x += (dx / dist) * 0.9;
+            this.y += (dy / dist) * 0.9;
           }
         }
 
@@ -866,43 +875,44 @@ document.addEventListener('DOMContentLoaded', () => {
         if (diff < 0.6) {
           this.ping = 1.0 - (diff / 0.6); // maximum ping at leading edge, fading trailing
         } else {
-          // decay ping over time
           this.ping -= 0.012;
           if (this.ping < 0) this.ping = 0;
         }
       }
 
       draw() {
-        ctx.save();
-        ctx.beginPath();
+        const size = this.radius + this.ping * 4;
         
-        // Particle size expands on radar ping
-        const r = this.radius + this.ping * 4;
-        ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
-        
-        // Particles glow gold on radar sweep hits
         if (this.ping > 0.05) {
-          ctx.shadowBlur = this.ping * 12;
-          ctx.shadowColor = '#C8A54E';
-          ctx.fillStyle = `rgba(232, 212, 139, ${0.4 + this.ping * 0.6})`; // bright gold-white glow
+          // Draw soft outer glow circle (hardware-accelerated, replaces costly shadowBlur)
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, size * 2.2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(200, 165, 78, ${this.ping * 0.12})`;
+          ctx.fill();
+
+          // Draw main core particle
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(232, 212, 139, ${0.5 + this.ping * 0.5})`;
+          ctx.fill();
         } else {
-          ctx.fillStyle = 'rgba(200, 165, 78, 0.35)';
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(200, 165, 78, 0.3)';
+          ctx.fill();
         }
-        
-        ctx.fill();
-        ctx.restore();
       }
     }
 
     const initParticles = () => {
       particles = [];
-      const density = Math.min(Math.floor((width * height) / 11000), 75); // clean density
+      const density = Math.min(Math.floor((width * height) / 11000), 75);
       for (let i = 0; i < density; i++) {
         particles.push(new Particle());
       }
     };
 
-    const drawHUD = (cx, cy, r) => {
+    const drawHUD = (cx, cy) => {
       ctx.save();
       
       // Draw Concentric Dashed Radar Rings
@@ -935,7 +945,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const drawLines = () => {
-      const maxDistance = 110;
+      const maxDistanceSq = 12100; // 110 * 110
+      const maxMouseDistanceSq = 19600; // 140 * 140
+      
       for (let i = 0; i < particles.length; i++) {
         const p1 = particles[i];
         
@@ -943,8 +955,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (mouse.active && mouse.x !== null) {
           const dx = mouse.x - p1.x;
           const dy = mouse.y - p1.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 140) {
+          const distSq = dx * dx + dy * dy;
+          if (distSq < maxMouseDistanceSq) {
+            const dist = Math.sqrt(distSq);
             const alpha = (1 - dist / 140) * 0.3;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
@@ -960,14 +973,13 @@ document.addEventListener('DOMContentLoaded', () => {
           const p2 = particles[j];
           const dx = p1.x - p2.x;
           const dy = p1.y - p2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (dist < maxDistance) {
-            const maxPing = Math.max(p1.ping, p2.ping);
-            // ONLY draw the connection if the nodes are currently hit by the radar sweep
-            // This creates a beautiful sweeping connection pathway instead of a messy web!
+          if (distSq < maxDistanceSq) {
+            const maxPing = p1.ping > p2.ping ? p1.ping : p2.ping;
             if (maxPing > 0.05) {
-              const alpha = (1 - dist / maxDistance) * maxPing * 0.3;
+              const dist = Math.sqrt(distSq);
+              const alpha = (1 - dist / 110) * maxPing * 0.3;
               ctx.beginPath();
               ctx.moveTo(p1.x, p1.y);
               ctx.lineTo(p2.x, p2.y);
@@ -986,10 +998,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const cx = width / 2;
       const cy = height / 2;
-      const r = Math.sqrt(cx * cx + cy * cy); // radius covering screen
 
       // 1. Draw static grid radar HUD
-      drawHUD(cx, cy, r);
+      drawHUD(cx, cy);
 
       // 2. Increment radar sweep angle (clockwise)
       radarAngle += 0.005;
@@ -1008,7 +1019,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.fillStyle = sweepGrad;
       ctx.beginPath();
       ctx.moveTo(0, 0);
-      // Draw 35-degree wedge trailing counter-clockwise behind leading sweep line
       ctx.arc(0, 0, r, 0, -0.6, true);
       ctx.closePath();
       ctx.fill();
@@ -1061,6 +1071,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Init
     resize();
     if (isVisible) startLoop();
+  })();
+
+  /* --------------------------------------------------------
+   *  19. SPOTLIGHT TRACKING GLOW EFFECT (ON #TRUST)
+   *  Calculates mouse position to feed gradient values
+   * ------------------------------------------------------ */
+  (() => {
+    const trustSection = $('#trust');
+    if (!trustSection) return;
+
+    trustSection.addEventListener('mousemove', (e) => {
+      const rect = trustSection.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      trustSection.style.setProperty('--mouse-x', `${x}px`);
+      trustSection.style.setProperty('--mouse-y', `${y}px`);
+    }, { passive: true });
   })();
 
   /* --------------------------------------------------------

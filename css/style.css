@@ -967,55 +967,120 @@ p:last-child {
 #trust {
   background-color: var(--navy);
   position: relative;
+  overflow: hidden;
+}
+
+#trust::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(200, 165, 78, 0.06),
+    transparent 80%
+  );
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.5s ease;
 }
 
 .trust-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--sp-4);
+  position: relative;
+  z-index: 2;
 }
 
 /* Glassmorphism card */
 .trust-card {
-  background: var(--glass-bg);
+  background: rgba(15, 29, 54, 0.45);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgba(26, 35, 64, 0.6);
   border-radius: var(--radius-lg);
-  padding: var(--sp-5);
+  padding: 40px var(--sp-4) var(--sp-5);
+  position: relative;
+  overflow: hidden;
   text-align: center;
-  transition:
-    transform var(--duration-normal) var(--ease-smooth),
-    border-color var(--duration-normal) var(--ease-smooth),
-    box-shadow var(--duration-normal) var(--ease-smooth);
+  z-index: 2;
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.trust-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(200, 165, 78, 0.4), transparent);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-smooth);
+}
+
+.trust-card-number {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-family: var(--font-heading);
+  font-size: var(--fs-body);
+  font-weight: 800;
+  color: rgba(200, 165, 78, 0.07);
+  letter-spacing: 0.05em;
+  transition: color var(--duration-normal) var(--ease-smooth);
 }
 
 .trust-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(200, 165, 78, 0.3);
-  box-shadow: 0 12px 40px rgba(200, 165, 78, 0.08);
+  transform: translateY(-8px);
+  border-color: rgba(200, 165, 78, 0.25);
+  background: rgba(15, 29, 54, 0.7);
+  box-shadow: 0 16px 48px rgba(5, 10, 18, 0.5), 0 0 32px rgba(200, 165, 78, 0.05);
 }
 
-.trust-card .icon {
+.trust-card:hover::before {
+  opacity: 1;
+}
+
+.trust-card:hover .trust-card-number {
+  color: rgba(200, 165, 78, 0.2);
+}
+
+.trust-card:hover .trust-icon {
+  background: rgba(200, 165, 78, 0.18);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(200, 165, 78, 0.15);
+}
+
+.trust-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   border-radius: var(--radius-full);
-  background: rgba(200, 165, 78, 0.1);
+  background: rgba(200, 165, 78, 0.08);
   color: var(--gold);
-  font-size: 28px;
-  margin-bottom: var(--sp-3);
+  margin: 0 auto var(--sp-4);
+  border: 1px solid rgba(200, 165, 78, 0.15);
+  transition: all var(--duration-normal) var(--ease-smooth);
 }
 
-.trust-card h3 {
+.trust-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.trust-title {
   font-size: var(--fs-h5);
   color: var(--white);
   margin-bottom: var(--sp-1);
 }
 
-.trust-card p {
+.trust-desc {
   font-size: var(--fs-body-sm);
   color: var(--silver);
   line-height: 1.7;
@@ -3296,35 +3361,7 @@ p:last-child {
   line-height: 1.8;
 }
 
-/* ── Trust card icons ───────────────────────────────────────────────────────── */
-.trust-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  border-radius: var(--radius-full);
-  background: rgba(200, 165, 78, 0.1);
-  color: var(--gold);
-  margin: 0 auto var(--sp-3);
-}
-
-.trust-icon svg {
-  width: 28px;
-  height: 28px;
-}
-
-.trust-title {
-  font-size: var(--fs-h5);
-  color: var(--white);
-  margin-bottom: var(--sp-1);
-}
-
-.trust-desc {
-  font-size: var(--fs-body-sm);
-  color: var(--silver);
-  line-height: 1.7;
-}
+/* ── Trust card styles (optimized & integrated above) ────────────────────────── */
 
 /* ── Service card bridge ────────────────────────────────────────────────────── */
 .service-icon {
