@@ -2057,7 +2057,7 @@ p:last-child {
 /* Back to top button */
 .back-to-top {
   position: fixed;
-  bottom: 112px;
+  bottom: 184px;
   right: 30px;
   width: 48px;
   height: 48px;
@@ -2136,6 +2136,42 @@ p:last-child {
   0%   { box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.4); }
   70%  { box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4), 0 0 0 16px rgba(37, 211, 102, 0); }
   100% { box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* Phone floating button */
+.phone-float {
+  position: fixed;
+  bottom: 108px;
+  right: var(--sp-3);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: var(--navy);
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  font-size: 24px;
+  box-shadow: 0 4px 16px rgba(200, 165, 78, 0.2);
+  z-index: var(--z-float);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.phone-float:hover {
+  background: var(--gold);
+  color: var(--deep-black);
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 6px 20px rgba(200, 165, 78, 0.35);
+}
+
+/* On mobile, we hide the round floating phone button since the full-width call bar is active */
+@media (max-width: 768px) {
+  .phone-float {
+    display: none !important;
+  }
 }
 
 /* Mobile call bar — hidden on desktop */
