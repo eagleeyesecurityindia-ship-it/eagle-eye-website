@@ -2057,8 +2057,8 @@ p:last-child {
 /* Back to top button */
 .back-to-top {
   position: fixed;
-  bottom: var(--sp-10);
-  right: var(--sp-3);
+  bottom: 112px;
+  right: 30px;
   width: 48px;
   height: 48px;
   display: flex;
