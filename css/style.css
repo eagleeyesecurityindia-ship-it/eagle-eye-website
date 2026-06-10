@@ -1961,6 +1961,122 @@ p:last-child {
 
 
 /* ============================================================================
+   § 15b. FAQ ACCORDION — #faq (AEO & GEO Optimization)
+   ============================================================================ */
+
+#faq {
+  background-color: var(--deep-black);
+}
+
+.faq-accordion-container {
+  max-width: 800px;
+  margin: var(--sp-6) auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.faq-item {
+  background: var(--navy);
+  border: 1px solid var(--graphite);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color var(--duration-normal) var(--ease-smooth);
+}
+
+.faq-item:hover {
+  border-color: rgba(200, 165, 78, 0.4);
+}
+
+.faq-item.active {
+  border-color: var(--gold);
+}
+
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px var(--sp-4);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  gap: var(--sp-3);
+  transition: background-color var(--duration-fast) var(--ease-smooth);
+}
+
+.faq-trigger:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -2px;
+}
+
+.faq-question {
+  font-family: var(--font-heading);
+  font-size: var(--fs-body-lg);
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.4;
+  transition: color var(--duration-normal) var(--ease-smooth);
+}
+
+.faq-trigger:hover .faq-question,
+.faq-item.active .faq-question {
+  color: var(--gold-light);
+}
+
+.faq-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: rgba(26, 35, 64, 0.5);
+  border: 1px solid var(--graphite);
+  color: var(--silver);
+  flex-shrink: 0;
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+
+.faq-trigger:hover .faq-icon {
+  color: var(--gold);
+  border-color: rgba(200, 165, 78, 0.3);
+  background: rgba(200, 165, 78, 0.05);
+}
+
+.faq-item.active .faq-icon {
+  color: var(--deep-black);
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: rotate(45deg);
+}
+
+/* Dynamic grid-based height transition */
+.faq-answer-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--duration-normal) var(--ease-smooth);
+}
+
+.faq-item.active .faq-answer-wrapper {
+  grid-template-rows: 1fr;
+}
+
+.faq-answer-content {
+  overflow: hidden;
+}
+
+.faq-answer-content p {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--silver);
+  line-height: 1.6;
+  padding: 0 var(--sp-4) 24px;
+}
+
+
+/* ============================================================================
    § 16. CAREERS — #careers
    ============================================================================ */
 

@@ -1194,6 +1194,40 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   /* --------------------------------------------------------
+   *  21. FAQ ACCORDION INTERACTION (AEO/GEO Optimization)
+   *  Toggles active state and handles ARIA attributes
+   * ------------------------------------------------------ */
+  (() => {
+    const triggers = $$('.faq-trigger');
+    if (!triggers.length) return;
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('.faq-item');
+        if (!item) return;
+
+        const isActive = item.classList.contains('active');
+
+        // Toggle clicked item
+        if (isActive) {
+          item.classList.remove('active');
+          trigger.setAttribute('aria-expanded', 'false');
+        } else {
+          // Collapse others for clean accordion behavior
+          $$('.faq-item.active').forEach((activeItem) => {
+            activeItem.classList.remove('active');
+            const activeTrigger = $('.faq-trigger', activeItem);
+            if (activeTrigger) activeTrigger.setAttribute('aria-expanded', 'false');
+          });
+
+          item.classList.add('active');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+
+  /* --------------------------------------------------------
    *  INIT COMPLETE — log for debugging
    * ------------------------------------------------------ */
   console.log('%c✦ Eagle Eye Security — JS Loaded', 'color:#c8a84e; font-weight:bold;');
