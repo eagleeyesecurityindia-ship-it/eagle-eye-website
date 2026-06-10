@@ -801,6 +801,8 @@ p:last-child {
   overflow: hidden;
   pointer-events: none;
   will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 #hero-grid-canvas {
@@ -826,6 +828,8 @@ p:last-child {
   background-repeat: no-repeat;
   will-change: transform;
   animation: kenBurns 25s infinite alternate ease-in-out;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 @keyframes kenBurns {

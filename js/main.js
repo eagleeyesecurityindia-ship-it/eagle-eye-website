@@ -304,14 +304,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!hero || !heroBg) return;
 
     let ticking = false;
+    let heroHeight = hero.offsetHeight;
 
     const onScroll = () => {
       if (ticking || window.innerWidth <= 768) return;
       ticking = true;
       requestAnimationFrame(() => {
         const offset = window.scrollY;
-        // Cap effect to hero height
-        if (offset < hero.offsetHeight) {
+        if (offset < heroHeight) {
           const y = offset * 0.35;
           heroBg.style.transform = `translate3d(0, ${y}px, 0)`;
         }
@@ -321,14 +321,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', onScroll, { passive: true });
 
-    // Disable parallax if viewport drops below threshold on resize
+    // Cache height on resize and disable parallax on small viewports
     window.addEventListener(
       'resize',
       debounce(() => {
+        heroHeight = hero.offsetHeight;
         if (window.innerWidth <= 768) {
           heroBg.style.transform = '';
         }
-      }),
+      }, 150),
+      { passive: true }
     );
   })();
 
