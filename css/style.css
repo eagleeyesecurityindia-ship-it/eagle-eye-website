@@ -3608,6 +3608,25 @@ p:last-child {
 }
 
 /* Mobile nav overlay */
+#navbar.nav-open {
+  height: 100vh !important;
+  height: 100dvh !important;
+  align-items: flex-start !important;
+  background-color: rgba(5, 10, 18, 0.98) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+}
+
+.nav-open .nav-container {
+  height: 80px;
+}
+
+@media (max-width: 768px) {
+  .nav-open .nav-container {
+    height: 64px;
+  }
+}
+
 .nav-open .nav-links {
   display: flex !important;
   flex-direction: column;
@@ -3615,9 +3634,7 @@ p:last-child {
   justify-content: center;
   position: fixed;
   inset: 0;
-  background: rgba(5, 10, 18, 0.97);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: transparent;
   z-index: var(--z-overlay);
   gap: var(--sp-4);
 }
