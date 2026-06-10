@@ -1128,22 +1128,66 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    // Prefill Service form helper with target mapping dictionary
+    const prefillService = (serviceName) => {
+      const dropdown = $('[name="service"]', $('#quote-form'));
+      if (!dropdown || !serviceName) return;
+
+      const serviceMap = {
+        // Main Verticals
+        'corporate & offices': 'Corporate Security',
+        'corporate security': 'Corporate Security',
+        'industrial & manufacturing': 'Industrial Security',
+        'industrial security': 'Industrial Security',
+        'retail & malls': 'Corporate Security',
+        'residential societies': 'Residential Security',
+        'healthcare & hotels': 'Facility Management',
+        
+        // Comprehensive Sector Grid
+        'warehousing & storage': 'Industrial Security',
+        'logistics & transit': 'Industrial Security',
+        'construction sites': 'Industrial Security',
+        'hospitals & clinics': 'Corporate Security',
+        'educational campuses': 'Corporate Security',
+        'events & exhibitions': 'Event Security',
+        'government projects': 'Corporate Security',
+        'financial & banking': 'Corporate Security'
+      };
+
+      const mappedValue = serviceMap[serviceName.toLowerCase()] || serviceName;
+
+      // Find match in dropdown options
+      const option = $$('option', dropdown).find(
+        (opt) => opt.value.toLowerCase() === mappedValue.toLowerCase() ||
+                 opt.value.toLowerCase().includes(mappedValue.toLowerCase()) ||
+                 mappedValue.toLowerCase().includes(opt.value.toLowerCase())
+      );
+
+      if (option) {
+        dropdown.value = option.value;
+        dropdown.dispatchEvent(new Event('change'));
+      }
+    };
+
     // Handle "Request Custom Plan" buttons inside panels to pre-fill the form
     $$('.ind-cta-link').forEach((link) => {
       link.addEventListener('click', () => {
         const service = link.dataset.service;
-        const dropdown = $('[name="service"]', $('#quote-form'));
+        prefillService(service);
+      });
+    });
+
+    // Handle "Other Sector" badges to scroll to contact and pre-fill form
+    $$('.other-sector-badge').forEach((badge) => {
+      badge.style.cursor = 'pointer';
+      badge.addEventListener('click', () => {
+        const serviceName = badge.dataset.service;
+        prefillService(serviceName);
         
-        if (dropdown && service) {
-          // Pre-fill option by matching name
-          const option = $$('option', dropdown).find(
-            (opt) => opt.value.toLowerCase().includes(service.toLowerCase()) || 
-                     service.toLowerCase().includes(opt.value.toLowerCase())
-          );
-          if (option) {
-            dropdown.value = option.value;
-            dropdown.dispatchEvent(new Event('change'));
-          }
+        const contact = $('#contact');
+        if (contact) {
+          const top = contact.getBoundingClientRect().top + window.scrollY - NAVBAR_HEIGHT;
+          window.scrollTo({ top, behavior: 'smooth' });
         }
       });
     });
