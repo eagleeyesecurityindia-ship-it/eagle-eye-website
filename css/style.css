@@ -1799,6 +1799,23 @@ p:last-child {
   z-index: 0;
 }
 
+.process-line {
+  position: absolute;
+  top: 86px;
+  left: 40px;
+  right: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--graphite), var(--gold) 20%, var(--gold) 80%, var(--graphite));
+  z-index: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.5s var(--ease-smooth);
+}
+
+.process-line.active {
+  transform: scaleX(1);
+}
+
 .process-step {
   display: flex;
   flex-direction: column;
@@ -2835,6 +2852,23 @@ p:last-child {
     width: 2px;
     height: auto;
     background: linear-gradient(180deg, var(--gold), var(--graphite));
+  }
+
+  .process-line {
+    top: 0;
+    bottom: 0;
+    left: 27px;
+    right: auto;
+    width: 2px;
+    height: auto;
+    background: linear-gradient(180deg, var(--gold), var(--gold-dark));
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1.5s var(--ease-smooth);
+  }
+
+  .process-line.active {
+    transform: scaleY(1);
   }
 
   .process-step {
@@ -4107,23 +4141,6 @@ p:last-child {
 }
 
 /* ── Process bridge ─────────────────────────────────────────────────────────── */
-.process-line {
-  position: absolute;
-  top: 86px;
-  left: 40px;
-  right: 40px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--graphite), var(--gold) 20%, var(--gold) 80%, var(--graphite));
-  z-index: 0;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 1.5s var(--ease-smooth);
-}
-
-.process-line.active {
-  transform: scaleX(1);
-}
-
 .step-content h3 {
   font-size: var(--fs-body);
   font-weight: 700;
